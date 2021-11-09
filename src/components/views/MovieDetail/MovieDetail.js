@@ -4,7 +4,6 @@ import MainImage from '../LandingPage/Section/MainImage';
 import Movieinfo from './Sections/Movieinfo';
 import GridCard from '../commons/GridCard';
 import { Row } from 'antd';
-import Img from './choonsik.png';
 function MovieDetail(props) {
 
     let movieId = props.match.params.movieId
@@ -37,7 +36,7 @@ function MovieDetail(props) {
     return (
         <div>
             {/*header */}
-            <div style= {{backgroundSize: 'cover'}}>  
+            <div>   
             <MainImage 
                         image={`${IMAGE_BASE_URL}w1280${Movie.backdrop_path}`}
                         title={Movie.original_title}
@@ -52,7 +51,9 @@ function MovieDetail(props) {
             </div>
             <div style={styles}>
                 {/*영화 정보*/}
-            <Movieinfo {...{Movie}}/>
+                <div style={{backgroundColor:'white'}}> 
+                <Movieinfo {...{Movie}}/>
+                </div>
                 {/* {Movie} */}
 
                 <br />
@@ -61,20 +62,20 @@ function MovieDetail(props) {
 
                 
                 <div style={{display: 'flex', justifyContent :'center', margin: '2rem'}}>
-                <button type="button" class="btn btn-primary" onClick={toggleActorView}>출연배우</button>
+                <button type="button" class="mb-5 btn btn-outline-light" onClick={toggleActorView}>출연배우</button>
                 </div>
 
                 {ActorToggle && 
                 <Row gutter={[16,16]}>
-                    {Casts && Casts.map((cast, index) => (
+                    {Casts && Casts.map((cast, index) => { 
+                        return (
                         <React.Fragment key={index}>
                             <GridCard
-                                image={cast.poster_path ?
-                                    `${IMAGE_BASE_URL}w500${cast.profile_path}` : Img}
+                                image={cast.profile_path ? `${IMAGE_BASE_URL}w500${cast.profile_path}` : ''}
                                 characterName={cast.name}
                             />
                         </React.Fragment>
-                    ))}
+                    )})}
                 </Row>
                 }
             </div>

@@ -7,29 +7,24 @@ import axios from 'axios';
 import GridCard from '../commons/GridCard';
 import { Row } from 'antd';
 import 'bootstrap/dist/css/bootstrap.min.css';
+
+
+
 function LandingPage() {
 
     const [Movies, setMovie] = useState([])
     const [MainMovieImage, setmainMovieImage] = useState("")
     const [CurrentPage, setCurrentPage] = useState(0)
-
-    function checkNullThen(obj, success, error) {
-        if (obj) {
-            return success();
-        } else {
-            return error();
-        }
-    }
-
+    
     useEffect(() => {
         const endpoint = `${API_URL}movie/popular?api_key=${API_KEY}&language=en-IS&page=1`;
         fetchMovies(endpoint)
     }, [])
+
     const fetchMovies = (endpoint) => {
         fetch(endpoint)
             .then(response => response.json())
             .then(response => {
-                console.log(response)
                 setMovie([...Movies, ...response.results])
                 setmainMovieImage(response.results[0])
                 setCurrentPage(response.page)
@@ -39,6 +34,11 @@ function LandingPage() {
         const endpoint = `${API_URL}movie/popular?api_key=${API_KEY}&language=en-IS&page=${CurrentPage + 1}`;
         fetchMovies(endpoint)
     }
+
+    function testMouseOver(e){
+        console.log(e.target)
+    }
+
     return (
 
         <div style={{ width: '100%', margin: '0', padding: '0px' }}>
@@ -48,19 +48,15 @@ function LandingPage() {
                     title={MainMovieImage.original_title}
                     text={MainMovieImage.overview}
                 />
-                // checkNullThen(MainMovieImage ,()=>{
-                //     return <MainImage Image={`${IMAGE_BASE_URL}w1280${MainMovieImage.backdrop_path}`} />;
-                // },()=>{
-                //     return null;
-                // })
             }
             <div style={{ width: '85%', margin: '1rem auto' }}>
                 <h2>최신 영화</h2>
                 <hr />
                 <Row gutter={[16,16]}>
                     {Movies && Movies.map((movie, index) => (
-                        <React.Fragment key={index}>
+                        <React.Fragment key={index} >
                             <GridCard
+                                onMouseOver={testMouseOver}
                                 LandingPage
                                 image={movie.poster_path ?
                                     `${IMAGE_BASE_URL}w500${movie.poster_path}` : null}
@@ -70,12 +66,15 @@ function LandingPage() {
                         </React.Fragment>
                     ))}
                 </Row>
-
+                <script>
+                </script>
             </div>
             <div style={{ display: 'flex', justifyContent: 'center' }}>
-                <button type="button" class="btn btn-primary" onClick={loadmoreItems}> 더보기</button>
+                <button type="button" class="mb-5 mt-2 btn btn-outline-light" onClick={loadmoreItems}> 더보기</button>
             </div>
+            
         </div>
+    
     )
 }
 

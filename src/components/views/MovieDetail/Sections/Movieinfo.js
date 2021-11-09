@@ -1,8 +1,8 @@
 import React from 'react'
 import { Descriptions, Badge} from 'antd';
 function Movieinfo({Movie}) {
-    return (
-      <Descriptions title="Movie Info" bordered>
+    return ( 
+      <Descriptions bordered>
           <Descriptions.item label="title">{Movie.original_title}</Descriptions.item>
           <Descriptions.item label="개봉일">{Movie.release_date}</Descriptions.item>
           <Descriptions.item label="상영시간">{Movie.runtime}</Descriptions.item>
