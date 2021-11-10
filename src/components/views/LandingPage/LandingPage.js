@@ -35,10 +35,6 @@ function LandingPage() {
         fetchMovies(endpoint)
     }
 
-    function testMouseOver(e){
-        console.log(e.target)
-    }
-
     return (
 
         <div style={{ width: '100%', margin: '0', padding: '0px' }}>
@@ -56,7 +52,6 @@ function LandingPage() {
                     {Movies && Movies.map((movie, index) => (
                         <React.Fragment key={index} >
                             <GridCard
-                                onMouseOver={testMouseOver}
                                 LandingPage
                                 image={movie.poster_path ?
                                     `${IMAGE_BASE_URL}w500${movie.poster_path}` : null}
