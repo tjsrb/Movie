@@ -4,6 +4,7 @@ import MainImage from '../LandingPage/Section/MainImage';
 import Movieinfo from './Sections/Movieinfo';
 import GridCard from '../commons/GridCard';
 import { Row } from 'antd';
+
 function MovieDetail(props) {
 
     let movieId = props.match.params.movieId
@@ -29,6 +30,7 @@ function MovieDetail(props) {
       fetch(endpointCrew)
             .then(respone => respone.json())
             .then(respone => {
+                console.log("responseForCrew",respone)
                 setCasts(respone.cast)
             })
     }, [])

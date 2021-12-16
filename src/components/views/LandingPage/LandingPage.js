@@ -15,7 +15,7 @@ function LandingPage() {
     const [Movies, setMovie] = useState([])
     const [MainMovieImage, setmainMovieImage] = useState("")
     const [CurrentPage, setCurrentPage] = useState(0)
-    
+
     useEffect(() => {
         const endpoint = `${API_URL}movie/popular?api_key=${API_KEY}&language=en-IS&page=1`;
         fetchMovies(endpoint)
@@ -34,7 +34,6 @@ function LandingPage() {
         const endpoint = `${API_URL}movie/popular?api_key=${API_KEY}&language=en-IS&page=${CurrentPage + 1}`;
         fetchMovies(endpoint)
     }
-
     return (
 
         <div style={{ width: '100%', margin: '0', padding: '0px' }}>
@@ -48,7 +47,7 @@ function LandingPage() {
             <div style={{ width: '85%', margin: '1rem auto' }}>
                 <h2>최신 영화</h2>
                 <hr />
-                <Row gutter={[16,16]}>
+                <Row gutter={[16, 16]}>
                     {Movies && Movies.map((movie, index) => (
                         <React.Fragment key={index} >
                             <GridCard
@@ -67,9 +66,9 @@ function LandingPage() {
             <div style={{ display: 'flex', justifyContent: 'center' }}>
                 <button type="button" class="mb-5 mt-2 btn btn-outline-light" onClick={loadmoreItems}> 더보기</button>
             </div>
-            
+
         </div>
-    
+
     )
 }
 

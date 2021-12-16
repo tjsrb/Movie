@@ -7,7 +7,7 @@ const defaultZoom = {
 };
 
 const zoonOut = {
-    width: '110%', height: '320px',
+    width: '100%', height: '320px',
     transition: 'all 0.5s linear',
     transform: 'scale(1.4)',
     zIndex:'9999',
